@@ -1,7 +1,7 @@
 {
   "name": "daxpay-h5",
   "type": "module",
-  "version": "4.0.0-beta6",
+  "version": "4.0.0-beta7",
   "private": true,
   "packageManager": "pnpm@10.32.1",
   "license": "LGPL-3.0-or-later",
