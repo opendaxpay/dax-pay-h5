@@ -28,7 +28,6 @@ export interface GatewayOrderInfo {
 
 /** 聚合/收银台支付结果 */
 export interface AggregatePayResult {
-  orderId?: string | number
   bizOrderNo?: string
   orderNo?: string
   status?: string

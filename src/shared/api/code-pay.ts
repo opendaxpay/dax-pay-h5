@@ -30,7 +30,6 @@ export interface CodePayInfo {
  * 码牌支付结果
  */
 export interface CodePayResult {
-  orderId?: string | number
   bizOrderNo?: string
   orderNo?: string
   tradeNo?: string
