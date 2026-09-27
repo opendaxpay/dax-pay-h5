@@ -35,6 +35,7 @@ import {
   getPayOpenId,
 } from '@/shared/utils/pay-openid'
 import {
+  isRedirectableQrInWallet,
   redirectToPayUrl,
   resolvePayResult,
   submitPayForm,
@@ -571,6 +572,12 @@ async function pay() {
         redirectToPayUrl(action.url)
         break
       case 'qrcode':
+        // 微信/支付宝客户端内: 通道返回的聚合码链接可按 UA 分流拉起钱包支付, 直接跳转而非显示二维码
+        if (isRedirectableQrInWallet(clientEnvParam, action.content)) {
+          redirectToPayUrl(action.content)
+          startPoll(orderNo)
+          break
+        }
         qrContent.value = action.content
         showQrcode.value = true
         startPoll(orderNo)

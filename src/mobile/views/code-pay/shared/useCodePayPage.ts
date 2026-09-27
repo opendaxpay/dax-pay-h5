@@ -19,6 +19,7 @@ import { useGatewayAuth } from '@/shared/pay/use-gateway-auth'
 import { isAmountOverMax, yuanToFen } from '@/shared/utils/pay-amount'
 import { clearPayOpenId, getPayOpenId } from '@/shared/utils/pay-openid'
 import {
+  isRedirectableQrInWallet,
   redirectToPayUrl,
   resolvePayResult,
   submitPayForm,
@@ -230,6 +231,16 @@ export function useCodePayPage(options: UseCodePayPageOptions) {
         }
         return
       case 'qrcode':
+        // 微信/支付宝客户端内: 通道返回的聚合码链接可按 UA 分流拉起钱包支付, 直接跳转并轮询后结束;
+        // 钱包外落到下方轮询(码牌页无二维码展示区, 沿用改动前直落 default 的轮询/待支付提示)
+        if (isRedirectableQrInWallet(clientEnv, action.content)) {
+          redirectToPayUrl(action.content, true)
+          if (result?.orderNo) {
+            startPoll(result.orderNo)
+          }
+          return
+        }
+        // falls through
       case 'unsupported':
       case 'poll':
       default:

@@ -27,6 +27,7 @@ import { cacheOrder, clearCachedOrder, getCachedOrder } from '@/shared/utils/ord
 import { fenToYuan } from '@/shared/utils/pay-amount'
 import { getPayOpenId } from '@/shared/utils/pay-openid'
 import {
+  isRedirectableQrInWallet,
   redirectToPayUrl,
   resolvePayResult,
   submitPayForm,
@@ -246,8 +247,8 @@ export function useAggregatePay(options: UseAggregatePayOptions) {
         redirectToPayUrl(action.url)
         break
       case 'qrcode':
-        // 支付宝客户端内: precreate 返回的 qrCode 是可拉起的 URL, 直接跳转而非显示二维码
-        if (clientEnv === 'alipay' && /^https?:\/\//i.test(action.content)) {
+        // 微信/支付宝客户端内: 通道返回的聚合码链接可按 UA 分流拉起钱包支付, 直接跳转而非显示二维码
+        if (isRedirectableQrInWallet(clientEnv, action.content)) {
           redirecting = true
           redirectToPayUrl(action.content)
           startPoll(orderNo)

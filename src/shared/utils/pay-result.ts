@@ -87,6 +87,22 @@ export function resolvePayResult(
 }
 
 /**
+ * 钱包宿主环境内, 二维码内容是否可直接跳转打开
+ *
+ * 聚合码链接(http URL)由通道侧按 UA 分流拉起对应钱包支付;
+ * 微信/支付宝客户端内直接跳转即可完成支付, 避免展示二维码的死局
+ * (钱包内无法扫自己屏幕上的码, canvas 二维码也不支持长按识别)。
+ * 钱包外(browser 等场景)仍应展示二维码供用户手机扫。
+ */
+export function isRedirectableQrInWallet(
+  clientEnv: string | undefined,
+  content: string,
+): boolean {
+  return (clientEnv === 'wechat' || clientEnv === 'alipay')
+    && /^https?:\/\//i.test(content)
+}
+
+/**
  * 执行跳转链接
  */
 export function redirectToPayUrl(url: string, replace = false): void {
