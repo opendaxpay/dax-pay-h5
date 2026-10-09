@@ -1,24 +1,53 @@
 <script lang="ts" setup>
 import type { UserProtocolContentResult } from '@/shared/api/types'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { findDefaultProtocol, resolveProtocolCode } from '@/shared/api/protocol'
 import BeianFooter from '@/shared/components/BeianFooter.vue'
+import { useDesignSetting } from '@/shared/hooks/setting/useDesignSetting'
+import { getLogoUrl, getSystemName, hasBeianFooterContent, websiteConfig } from '@/shared/logics/init-website-config'
 import { formatDate } from '@/shared/utils/datetime'
 
 defineOptions({ name: 'PcProtocolPage' })
 
 const { t } = useI18n()
 const route = useRoute()
-const router = useRouter()
+const { getDarkMode } = useDesignSetting()
 
 const loading = ref(true)
+// 协议内容
 const protocol = ref<UserProtocolContentResult | null>(null)
+// 错误信息
 const errorMsg = ref('')
 
 const title = computed(() => protocol.value?.title || t('protocol.title'))
 const html = computed(() => protocol.value?.contentHtml || '')
+
+// 站点 logo(平台配置优先, 默认 public/logo.svg; 深色优先 logoDark)
+const logoUrl = computed(() => {
+  void websiteConfig.value
+  // 依赖深色模式, 切换系统主题时刷新 logoDark
+  void getDarkMode.value
+  return getLogoUrl()
+})
+
+// 系统名(平台配置, 空回退 DaxPay)
+const systemName = computed(() => {
+  void websiteConfig.value
+  return getSystemName() || 'DaxPay'
+})
+
+// 页脚显隐: 备案配置全空时整条页脚不渲染(避免只剩一条空发丝线)
+const showFooter = computed(() => {
+  void websiteConfig.value
+  return hasBeianFooterContent()
+})
+
+// 协议标题加载完成后同步浏览器标签页标题(路由 meta 只有静态「协议」兜底)
+watch(title, (value) => {
+  document.title = value
+})
 
 /** 加载默认协议内容 */
 async function load() {
@@ -40,36 +69,35 @@ async function load() {
   }
 }
 
-/** 返回上一页, 无历史则回首页 */
-function onBack() {
-  if (window.history.state?.back) {
-    router.back()
-  }
-  else {
-    router.replace('/')
-  }
-}
-
 onMounted(load)
 </script>
 
 <template>
   <div class="pc-protocol">
-    <header class="pc-protocol__bar">
-      <button type="button" class="pc-protocol__back" @click="onBack">
-        <span class="pc-protocol__arrow">‹</span>
-        {{ t('common.back') }}
-      </button>
-      <span class="pc-protocol__bar-title">{{ title }}</span>
-    </header>
-    <main class="pc-protocol__main">
-      <div class="pc-protocol__container">
+    <!-- 内容列: 短内容时页脚贴视口底(flex 撑满), 长内容时页脚随文末 -->
+    <div class="pc-protocol__layout">
+      <!-- 站点品牌栏: 左上角 logo + 系统名, 点击回首页 -->
+      <header class="pc-protocol__header">
+        <div class="pc-protocol__header-inner">
+          <RouterLink class="pc-protocol__brand" to="/" :aria-label="t('common.backHome')">
+            <img class="pc-protocol__brand-logo" :src="logoUrl" :alt="systemName">
+            <span class="pc-protocol__brand-name">{{ systemName }}</span>
+          </RouterLink>
+        </div>
+      </header>
+
+      <main class="pc-protocol__main">
+        <!-- 加载中 -->
         <div v-if="loading" class="pc-protocol__status">
           {{ t('common.loading') }}
         </div>
+
+        <!-- 错误 -->
         <div v-else-if="errorMsg" class="pc-protocol__status">
           {{ errorMsg }}
         </div>
+
+        <!-- 正文 -->
         <article v-else-if="html" class="pc-protocol__article">
           <h1 class="pc-protocol__title">
             {{ protocol?.title }}
@@ -81,79 +109,92 @@ onMounted(load)
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="pc-protocol__content" v-html="html" />
         </article>
+
+        <!-- 无内容 -->
         <div v-else class="pc-protocol__status">
           {{ t('protocol.noContent') }}
         </div>
-      </div>
-      <!-- 平台备案信息(版权 + ICP + 公网安, 配置为空不渲染) -->
-      <BeianFooter class="pc-protocol__beian" />
-    </main>
+      </main>
+
+      <!-- 平台备案信息(版权 + ICP + 公网安, 配置为空不渲染): 页面级页脚 -->
+      <footer v-if="showFooter" class="pc-protocol__footer">
+        <BeianFooter class="pc-protocol__beian" />
+      </footer>
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
 // PC 端: 严格使用 scoped 原生 px + 媒体查询, 禁用 UnoCSS 长度原子类
+// 全局 body/html 锁滚(common.less), 长文由本容器内滚
 .pc-protocol {
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   background: var(--h5-bg-page);
-  display: flex;
-  flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
-.pc-protocol__bar {
+.pc-protocol__layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- 品牌栏(站点 chrome): 内容从栏下滚过, 遮在栏后 ---------- */
+.pc-protocol__header {
   position: sticky;
   top: 0;
   z-index: 10;
-  display: flex;
-  align-items: center;
-  height: 56px;
-  padding: 0 24px;
-  background: var(--h5-bg-card);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  background: var(--h5-bg-page);
+  border-bottom: 1px solid var(--h5-border);
 }
 
-.pc-protocol__back {
+/* 与正文栏同宽同 padding, 品牌与卡片左缘对齐 */
+.pc-protocol__header-inner {
+  display: flex;
+  align-items: center;
+  max-width: 884px;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.pc-protocol__brand {
   display: inline-flex;
   align-items: center;
-  height: 32px;
-  padding: 0 12px;
-  border: none;
-  background: transparent;
-  color: #5d9dfe;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s;
+  gap: 10px;
+  color: var(--h5-text-primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
 
   &:hover {
-    background: var(--h5-bg-brand-soft);
+    opacity: 0.8;
   }
 }
 
-.pc-protocol__arrow {
-  font-size: 20px;
-  line-height: 1;
-  margin-right: 2px;
+.pc-protocol__brand-logo {
+  width: 30px;
+  height: 30px;
 }
 
-.pc-protocol__bar-title {
-  margin-left: auto;
-  margin-right: auto;
-  transform: translateX(-26px);
-  font-size: 16px;
+.pc-protocol__brand-name {
+  font-size: 18px;
   font-weight: 600;
   color: var(--h5-text-primary);
 }
 
+/* ---------- 正文文档栏(窄栏阅读容器) ---------- */
 .pc-protocol__main {
   flex: 1;
-  padding: 32px 16px;
+  width: 100%;
+  max-width: 884px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
 }
 
-.pc-protocol__container {
-  max-width: 820px;
-  margin: 0 auto;
+.pc-protocol__article {
   background: var(--h5-bg-card);
   border-radius: 8px;
   padding: 48px 56px;
@@ -161,31 +202,45 @@ onMounted(load)
 }
 
 .pc-protocol__status {
+  background: var(--h5-bg-card);
+  border-radius: 8px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
   text-align: center;
   color: var(--h5-text-secondary);
   padding: 80px 0;
   font-size: 14px;
 }
 
-/* 平台备案栏: 正文容器下方弱化展示 */
-.pc-protocol__beian {
-  margin-top: 16px;
-  opacity: 0.75;
+/* ---------- 页面级页脚: 全宽贴底, 与品牌栏对称的站点 chrome ---------- */
+.pc-protocol__footer {
+  padding: 20px 32px 24px;
+  border-top: 1px solid var(--h5-border);
 }
 
+/* 备案栏 PC 规格覆写: 组件基础样式面向交易页(12px), 此处提一档可读性 */
+.pc-protocol__footer :deep(.beian-footer) {
+  font-size: 13px;
+  gap: 6px;
+}
+
+.pc-protocol__footer :deep(.beian-footer__filing-icon) {
+  width: 16px;
+  height: 16px;
+}
+
+/* 文档头: 左对齐(协议标题 + 版本/生效时间) */
 .pc-protocol__title {
   margin: 0 0 12px;
   font-size: 26px;
   font-weight: 700;
+  line-height: 1.35;
   color: var(--h5-text-primary);
-  text-align: center;
 }
 
 .pc-protocol__meta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+  gap: 8px 16px;
   margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--h5-border);
@@ -288,14 +343,23 @@ onMounted(load)
   }
 }
 
-// 响应式: 窄屏收缩内边距
+// 响应式: 窄屏收缩内边距(品牌栏/正文栏/页脚保持同 padding 对齐)
 @media (max-width: 768px) {
-  .pc-protocol__main {
-    padding: 16px 8px;
+  .pc-protocol__header-inner {
+    height: 52px;
+    padding: 0 12px;
   }
 
-  .pc-protocol__container {
+  .pc-protocol__main {
+    padding: 16px 12px;
+  }
+
+  .pc-protocol__article {
     padding: 24px 20px;
+  }
+
+  .pc-protocol__footer {
+    padding: 16px 12px 20px;
   }
 }
 </style>
