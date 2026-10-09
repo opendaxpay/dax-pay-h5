@@ -9,5 +9,12 @@
   "operationSuccess": "Operasi berjaya!",
   "operationFailed": "Operasi gagal!",
   "processing": "Memproses...",
-  "closeManually": "Sila ketik butang kembali atau tutup halaman di penjuru kiri atas"
+  "closeManually": "Sila ketik butang kembali atau tutup halaman di penjuru kiri atas",
+  "device": {
+    "switchTitle": "Tukar Versi Halaman",
+    "switchToMobile": "Anda sedang membuka versi PC pada telefon. Tukar ke versi mudah alih?",
+    "switchToPc": "Anda sedang membuka versi mudah alih pada komputer. Tukar ke versi PC?",
+    "switchAction": "Tukar",
+    "keepCurrent": "Kekal Semasa"
+  }
 }

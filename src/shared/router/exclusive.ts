@@ -43,3 +43,11 @@ export const EXCLUSIVE_ROUTES: ExclusiveRoute[] = [
 export function otherDeviceExclusives(forDevice: 'pc' | 'mobile'): ExclusiveRoute[] {
   return EXCLUSIVE_ROUTES.filter(r => r.device !== forDevice)
 }
+
+/**
+ * 判断路由 name 是否为某独占页的"真实路由"（对端存根名为 `${name}__stub`，不在匹配内）。
+ * 供终端不匹配弹窗判定：独占页真实版被错误终端打开时不弹切换窗（切过去只有存根）。
+ */
+export function isExclusiveRouteName(name: unknown): boolean {
+  return typeof name === 'string' && EXCLUSIVE_ROUTES.some(r => r.name === name)
+}

@@ -13,9 +13,15 @@ declare global {
   // 设备类型：由 index.html 内联脚本在 Vue 挂载前写入，'pc' | 'mobile'
   const __DEVICE__: 'pc' | 'mobile'
 
+  // UA 探测的原生设备类型（不受 ?device= 覆盖参数影响）：由 index.html 内联脚本在 Vue 挂载前写入，'pc' | 'mobile'
+  const __UA_DEVICE__: 'pc' | 'mobile'
+
   interface Window {
     // 设备类型：由 index.html 内联脚本在 Vue 挂载前写入，'pc' | 'mobile'
     __DEVICE__: 'pc' | 'mobile'
+
+    // UA 探测的原生设备类型（不受 ?device= 覆盖参数影响）：由 index.html 内联脚本在 Vue 挂载前写入，'pc' | 'mobile'
+    __UA_DEVICE__: 'pc' | 'mobile'
   }
 
   const __APP_INFO__: {

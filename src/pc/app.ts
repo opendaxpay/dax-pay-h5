@@ -26,6 +26,9 @@ function setupPCStore(app: App) {
  * UnoCSS 在 PC 仅限用非长度类（flex / grid / hidden / 颜色 / 文字对齐等）。
  */
 export async function createPCApp() {
+  // PC 形态标记: 供全局样式锚定(html[data-device='pc'], 见 App.vue 样式块的 vant 字号归一),
+  // 移动端挂载链不执行本函数, 永不命中该选择器
+  document.documentElement.dataset.device = 'pc'
   const app = createApp(PcApp)
   setupPCStore(app)
   // 挂载国际化（PC 端独立实例，与移动端共用同一 i18n 模块）

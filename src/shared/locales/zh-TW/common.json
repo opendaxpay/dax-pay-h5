@@ -9,5 +9,12 @@
   "operationSuccess": "操作成功！",
   "operationFailed": "操作失敗！",
   "processing": "正在處理...",
-  "closeManually": "請點擊左上返回或關閉頁面"
+  "closeManually": "請點擊左上返回或關閉頁面",
+  "device": {
+    "switchTitle": "切換頁面版本",
+    "switchToMobile": "目前為 PC 版頁面，偵測到您正在使用手機，是否切換為行動版？",
+    "switchToPc": "目前為行動版頁面，偵測到您正在使用電腦，是否切換為 PC 版？",
+    "switchAction": "切換",
+    "keepCurrent": "保持目前"
+  }
 }

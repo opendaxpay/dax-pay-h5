@@ -19,7 +19,15 @@
           const isTouch = navigator.maxTouchPoints > 0
           const isMobileUA =
             /(Mobile|Android|iPhone|iPod|Windows Phone)/i.test(ua) || (isTouch && /Macintosh/i.test(ua))
+          // 记录 UA 探测的原生结果：覆盖参数只影响 __DEVICE__，终端不匹配弹窗判定需要不受覆盖干扰的原生结果
+          window.__UA_DEVICE__ = isMobileUA ? 'mobile' : 'pc'
           window.__DEVICE__ = override === 'pc' || override === 'mobile' ? override : isMobileUA ? 'mobile' : 'pc'
+
+          // 生效形态回写 URL：让地址栏始终携带最终形态，刷新/分享后不丢失；保留 inviteCode 等既有参数
+          // replaceState 无历史记录且不触发导航，对 vue-router 与首屏渲染无感
+          const url = new URL(window.location.href)
+          url.searchParams.set('device', window.__DEVICE__)
+          window.history.replaceState(null, '', url)
 
           // PC 端只挂载 #pc-app，隐藏 #app 内的移动端首屏 loading，避免残留转圈
           if (window.__DEVICE__ === 'pc') {

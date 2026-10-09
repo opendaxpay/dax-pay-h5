@@ -24,6 +24,7 @@ export const RoutePath = {
   /**
    * 收银台环境页（Mobile H5；clientEnv=browser|wechat|alipay|union_pay|douyin）
    * 与运营端 H5 配置分桶一一对应；OAuth returnPath 指向此路径
+   * PC 端注册同 path 常量兜底复用 WEB 收银页（忽略 clientEnv 段），防分享链接 404
    */
   CASHIER_ENV: '/cashier/:orderNo/:clientEnv',
   /**
@@ -49,6 +50,18 @@ export const RoutePath = {
   AGGREGATE_GROUP: '/aggregate',
   /** 聚合-不支持的宿主环境提示（Mobile + PC 注册用） */
   AGGREGATE_UNSUPPORTED: '/aggregate/unsupported',
+  /**
+   * 聚合各宿主环境页路径（移动端 entry 探测 replace 的内部落点, URL 契约 /aggregate/{env}/:orderNo）
+   * 移动端以相对子路由挂在 AGGREGATE_GROUP 下实现; PC 端注册同 path 常量兜底复用 PC 聚合页,
+   * 防止移动端 replace 后的地址被分享到 PC 打开时落 404
+   */
+  AGGREGATE_ENV_WECHAT: '/aggregate/wechat/:orderNo',
+  /** 聚合-支付宝环境页路径（同 AGGREGATE_ENV_WECHAT） */
+  AGGREGATE_ENV_ALIPAY: '/aggregate/alipay/:orderNo',
+  /** 聚合-云闪付环境页路径（同 AGGREGATE_ENV_WECHAT） */
+  AGGREGATE_ENV_UNION: '/aggregate/union-pay/:orderNo',
+  /** 聚合-抖音环境页路径（同 AGGREGATE_ENV_WECHAT） */
+  AGGREGATE_ENV_DOUYIN: '/aggregate/douyin/:orderNo',
   /**
    * 聚合小程序入口（跨端；预下单同时返回的 miniUrl 落地 URL 契约）
    * 微信/支付宝扫码后由「普通链接二维码」规则拉起各自小程序;

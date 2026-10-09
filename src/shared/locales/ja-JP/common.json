@@ -9,5 +9,12 @@
   "operationSuccess": "作戦成功！",
   "operationFailed": "操作は失敗しました!",
   "processing": "処理中...",
-  "closeManually": "左上の戻るまたはページを閉じるボタンをタップしてください"
+  "closeManually": "左上の戻るまたはページを閉じるボタンをタップしてください",
+  "device": {
+    "switchTitle": "ページ版の切り替え",
+    "switchToMobile": "現在は PC 版のページです。モバイル端末でご利用中のため、モバイル版に切り替えますか？",
+    "switchToPc": "現在はモバイル版のページです。パソコンでご利用中のため、PC 版に切り替えますか？",
+    "switchAction": "切り替える",
+    "keepCurrent": "このまま使う"
+  }
 }

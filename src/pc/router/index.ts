@@ -27,6 +27,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pc/views/cashier/index.vue'),
     meta: { title: 'route.cashier' }, // 收银台
   },
+  // 收银台环境页路径（移动端 entry 探测 replace 的内部落点）:
+  // PC 打开时复用 WEB 收银页（组件只消费 orderNo, 忽略 clientEnv 段）, 防分享链接 404
+  {
+    path: RoutePath.CASHIER_ENV,
+    name: 'PcCashierEnv',
+    component: () => import('@/pc/views/cashier/index.vue'),
+    meta: { title: 'route.cashier' }, // 收银台
+  },
   // 收银台小程序引导页（跨端：浏览器直接打开 /cm/:orderNo 时展示扫码提示，不发起支付）
   {
     path: RoutePath.CASHIER_MINI,
@@ -45,6 +53,32 @@ const routes: RouteRecordRaw[] = [
   {
     path: RoutePath.AGGREGATE,
     name: 'PcAggregate',
+    component: () => import('@/pc/views/aggregate/index.vue'),
+    meta: { title: 'route.cashier' }, // 收银台
+  },
+  // 聚合各宿主环境页路径（移动端 entry 探测 replace 的内部落点）:
+  // PC 打开时复用 PC 聚合页（组件只消费 orderNo, 忽略 env 段, 展示二维码）, 防分享链接 404
+  {
+    path: RoutePath.AGGREGATE_ENV_WECHAT,
+    name: 'PcAggregateWechatEnv',
+    component: () => import('@/pc/views/aggregate/index.vue'),
+    meta: { title: 'route.cashier' }, // 收银台
+  },
+  {
+    path: RoutePath.AGGREGATE_ENV_ALIPAY,
+    name: 'PcAggregateAlipayEnv',
+    component: () => import('@/pc/views/aggregate/index.vue'),
+    meta: { title: 'route.cashier' }, // 收银台
+  },
+  {
+    path: RoutePath.AGGREGATE_ENV_UNION,
+    name: 'PcAggregateUnionEnv',
+    component: () => import('@/pc/views/aggregate/index.vue'),
+    meta: { title: 'route.cashier' }, // 收银台
+  },
+  {
+    path: RoutePath.AGGREGATE_ENV_DOUYIN,
+    name: 'PcAggregateDouyinEnv',
     component: () => import('@/pc/views/aggregate/index.vue'),
     meta: { title: 'route.cashier' }, // 收银台
   },

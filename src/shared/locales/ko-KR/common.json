@@ -9,5 +9,12 @@
   "operationSuccess": "작전 성공!",
   "operationFailed": "작업이 실패했습니다!",
   "processing": "처리 중...",
-  "closeManually": "왼쪽 상단의 뒤로가기 또는 페이지 닫기를 눌러 주세요"
+  "closeManually": "왼쪽 상단의 뒤로가기 또는 페이지 닫기를 눌러 주세요",
+  "device": {
+    "switchTitle": "페이지 버전 전환",
+    "switchToMobile": "현재 PC 버전 페이지입니다. 휴대폰으로 접속 중입니다. 모바일 버전으로 전환할까요?",
+    "switchToPc": "현재 모바일 버전 페이지입니다. 컴퓨터로 접속 중입니다. PC 버전으로 전환할까요?",
+    "switchAction": "전환",
+    "keepCurrent": "현재 유지"
+  }
 }

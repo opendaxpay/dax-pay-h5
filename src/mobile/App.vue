@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed, unref } from 'vue'
+import { computed, onMounted, unref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useDesignSetting } from '@/shared/hooks/setting/useDesignSetting'
 import { useVantThemeVars } from '@/shared/hooks/setting/useVantThemeVars'
 import { useLocale } from '@/shared/locales'
+import { checkDeviceMismatch } from '@/shared/logics/device-mismatch'
 import { useRouteStore } from '@/shared/store/modules/route'
 
+const router = useRouter()
 const routeStore = useRouteStore()
 const { getIsPageAnimate, getPageAnimateType } = useDesignSetting()
 const { getDarkMode, getThemeVars } = useVantThemeVars()
@@ -16,6 +19,13 @@ const keepAliveComponents = computed(() => routeStore.keepAliveComponents)
 
 const getTransitionName = computed(() => {
   return unref(getIsPageAnimate) ? unref(getPageAnimateType) : undefined
+})
+
+// 挂载完成后检测页面形态与终端 UA 是否不匹配并弹窗提醒（异步触发，不阻塞首屏渲染）
+// 等初始导航完成再取首屏路由名：弹窗按「切换后有真实页面可去」判定需要（独占真实版/404 不弹）
+onMounted(async () => {
+  await router.isReady()
+  checkDeviceMismatch(router.currentRoute.value?.name)
 })
 </script>
 

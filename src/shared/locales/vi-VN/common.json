@@ -9,5 +9,12 @@
   "operationSuccess": "Hoạt động đã thành công!",
   "operationFailed": "Hoạt động không thành công!",
   "processing": "Đang xử lý...",
-  "closeManually": "Vui lòng nhấn nút quay lại hoặc đóng trang ở góc trên bên trái"
+  "closeManually": "Vui lòng nhấn nút quay lại hoặc đóng trang ở góc trên bên trái",
+  "device": {
+    "switchTitle": "Chuyển phiên bản trang",
+    "switchToMobile": "Bạn đang xem phiên bản PC trên điện thoại. Chuyển sang phiên bản di động?",
+    "switchToPc": "Bạn đang xem phiên bản di động trên máy tính. Chuyển sang phiên bản PC?",
+    "switchAction": "Chuyển",
+    "keepCurrent": "Giữ nguyên"
+  }
 }

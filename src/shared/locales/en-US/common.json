@@ -9,5 +9,12 @@
   "operationSuccess": "Operation succeeded!",
   "operationFailed": "Operation failed!",
   "processing": "Processing...",
-  "closeManually": "Please tap Back or Close Page in the top-left corner"
+  "closeManually": "Please tap Back or Close Page in the top-left corner",
+  "device": {
+    "switchTitle": "Switch Page Version",
+    "switchToMobile": "You are viewing the PC version on a phone. Switch to the mobile version?",
+    "switchToPc": "You are viewing the mobile version on a computer. Switch to the PC version?",
+    "switchAction": "Switch",
+    "keepCurrent": "Keep Current"
+  }
 }
