@@ -6,6 +6,7 @@
   "alipayAuth": "Pengesahan Alipay",
   "alipayIsvAuth": "Keizinan ejen Alipay",
   "wechatAuth": "Pengesahan WeChat",
+  "socialTransit": "Pengalihan Log Masuk",
   "douyinAuth": "Pengesahan Douyin",
   "merchantStatement": "Penyata Peniaga",
   "errorPage": "Halaman tidak dijumpai",

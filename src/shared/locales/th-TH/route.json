@@ -6,6 +6,7 @@
   "alipayAuth": "การยืนยันตัวตน Alipay",
   "alipayIsvAuth": "การอนุญาตตัวแทน Alipay",
   "wechatAuth": "การยืนยันตัวตน WeChat",
+  "socialTransit": "เปลี่ยนเส้นทางเข้าสู่ระบบ",
   "douyinAuth": "การยืนยันตัวตน Douyin",
   "merchantStatement": "คำชี้แจงของผู้ขาย",
   "errorPage": "ไม่พบหน้า",

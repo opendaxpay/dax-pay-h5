@@ -107,6 +107,16 @@ export const RoutePath = {
   /** 抖音认证落地页（移动独占：抖音 silent_auth 重定向回调，authToken 通过 state 查询参数传递） */
   AUTH_DOUYIN: '/auth/douyin',
   /**
+   * 三方登录透传页（跨端：跳转型平台登录 OAuth 回调）
+   * 跳转型平台(支付宝/公众号)登录回调统一落网关域名此路径, 凭 client+source
+   * 查询目标端回调地址后原样透传 query 跳回对应 Web 端, 路径与后端透传契约一致
+   */
+  SOCIAL_LOGIN_TRANSIT: '/auth/oauth-callback/:client/:source',
+  /**
+   * 三方绑定透传页（跨端：跳转型平台绑定 OAuth 回调, 机制同登录透传页）
+   */
+  SOCIAL_BIND_TRANSIT: '/auth/social-bind-callback/:client/:source',
+  /**
    * 支付结果页（跨端；通道同步回跳落地页 + jsapi 终态统一入口）
    * 通道 returnUrl 设为此地址: {paymentGatewayBaseUrl}/pay-result/{tradeNo}
    * 支付完成后凭 tradeNo 查订单状态, 有商户 returnUrl 则带签名跳转, 无则展示结果结束页

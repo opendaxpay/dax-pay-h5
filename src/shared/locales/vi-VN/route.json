@@ -6,6 +6,7 @@
   "alipayAuth": "Xác thực Alipay",
   "alipayIsvAuth": "Ủy quyền đại lý Alipay",
   "wechatAuth": "Xác thực WeChat",
+  "socialTransit": "Chuyển hướng đăng nhập",
   "douyinAuth": "Xác thực Douyin",
   "merchantStatement": "Tuyên bố của người bán",
   "errorPage": "Không tìm thấy trang",

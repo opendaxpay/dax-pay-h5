@@ -226,6 +226,24 @@ const routeModuleList: Array<RouteRecordRaw> = [
       title: 'route.douyinAuth', // 抖音认证
     },
   },
+  // 三方登录透传页（跨端：跳转型平台登录 OAuth 回调，查目标端回调地址后跳回对应 Web 端）
+  {
+    path: RoutePath.SOCIAL_LOGIN_TRANSIT,
+    name: 'SocialLoginTransit',
+    component: () => import('@/mobile/views/auth/social-transit/login.vue'),
+    meta: {
+      title: 'route.socialTransit', // 登录跳转
+    },
+  },
+  // 三方绑定透传页（跨端：跳转型平台绑定 OAuth 回调，机制同登录透传页）
+  {
+    path: RoutePath.SOCIAL_BIND_TRANSIT,
+    name: 'SocialBindTransit',
+    component: () => import('@/mobile/views/auth/social-transit/bind.vue'),
+    meta: {
+      title: 'route.socialTransit', // 登录跳转
+    },
+  },
   // 支付结果页（跨端：通道同步回跳落地页 + jsapi 终态统一入口）
   {
     path: RoutePath.PAY_RESULT,

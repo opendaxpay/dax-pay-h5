@@ -6,6 +6,7 @@
   "alipayAuth": "Alipay 인증",
   "alipayIsvAuth": "Alipay 대리점 승인",
   "wechatAuth": "WeChat 인증",
+  "socialTransit": "로그인 전환",
   "douyinAuth": "Douyin 인증",
   "merchantStatement": "판매자 명세서",
   "errorPage": "페이지를 찾을 수 없음",

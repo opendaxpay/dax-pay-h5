@@ -117,6 +117,20 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pc/views/auth/wechat/index.vue'),
     meta: { title: 'route.wechatAuth' }, // 微信认证
   },
+  // 三方登录透传页（跨端：与移动端同 path 各指各 view，跳转型平台登录 OAuth 回调）
+  {
+    path: RoutePath.SOCIAL_LOGIN_TRANSIT,
+    name: 'PcSocialLoginTransit',
+    component: () => import('@/pc/views/auth/social-transit/login.vue'),
+    meta: { title: 'route.socialTransit' }, // 登录跳转
+  },
+  // 三方绑定透传页（跨端：与移动端同 path 各指各 view，机制同登录透传页）
+  {
+    path: RoutePath.SOCIAL_BIND_TRANSIT,
+    name: 'PcSocialBindTransit',
+    component: () => import('@/pc/views/auth/social-transit/bind.vue'),
+    meta: { title: 'route.socialTransit' }, // 登录跳转
+  },
   // 码牌支付：PC 仅展示扫码引导（静态段须在 /h/:code 之前）
   {
     path: RoutePath.CODE_PAY_WECHAT,

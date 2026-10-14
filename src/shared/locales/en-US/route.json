@@ -6,6 +6,7 @@
   "alipayAuth": "Alipay Auth",
   "alipayIsvAuth": "Alipay Agent Authorization",
   "wechatAuth": "WeChat Auth",
+  "socialTransit": "Sign-in Redirect",
   "douyinAuth": "Douyin Auth",
   "merchantStatement": "Merchant Statement",
   "errorPage": "Page Not Found",

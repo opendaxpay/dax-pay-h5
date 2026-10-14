@@ -6,6 +6,7 @@
   "alipayAuth": "支付寶認證",
   "alipayIsvAuth": "支付寶代運營授權",
   "wechatAuth": "微信認證",
+  "socialTransit": "登入跳轉",
   "douyinAuth": "抖音認證",
   "merchantStatement": "商户對賬單",
   "errorPage": "頁面不存在",

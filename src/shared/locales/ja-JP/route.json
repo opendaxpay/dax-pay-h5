@@ -6,6 +6,7 @@
   "alipayAuth": "Alipay認証",
   "alipayIsvAuth": "Alipay代理店承認",
   "wechatAuth": "WeChat認証",
+  "socialTransit": "ログインリダイレクト",
   "douyinAuth": "Douyin認証",
   "merchantStatement": "販売者の声明",
   "errorPage": "ページが見つかりません",
