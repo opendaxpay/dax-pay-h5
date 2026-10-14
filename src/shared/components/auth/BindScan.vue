@@ -6,14 +6,16 @@
  * 凭票据向后端换取公众号网页授权地址后跳转微信, 授权回调落 BindScanResult 结果页。
  * 公众号网页授权仅微信客户端内可完成, 本页须在微信内打开才能通过微信侧校验。
  *
- * login 场景先落确认页: 微信授权页仅首次授权时弹出, 不构成按次确认; 确认页是
- * 跨设备扫码登录唯一的按次用户同意环节(防诱导扫码钓鱼), 取消则拒绝本次登录。
+ * 两场景均先落确认页(微信授权页仅首次授权时弹出, 不构成按次确认):
+ * - login: 确认页是跨设备扫码登录唯一的按次用户同意环节(防诱导扫码钓鱼)
+ * - bind: 确认页展示脱敏的目标账号名, 供扫码者核对是否本人电脑端账号——
+ *   这是「微信身份抢占」钓鱼(诱导扫码把微信绑到他人账号)的唯一拦截点
  * 失败兜底: 票据缺失/过期或授权地址获取失败时显示错误卡; 全程不记录票据日志。
  */
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { cancelLoginScan, getBindScanAuthUrl, getLoginScanAuthUrl } from '@/shared/api/social-bind-scan'
+import { cancelBindScan, cancelLoginScan, getBindScanAuthUrl, getBindScanConfirmInfo, getLoginScanAuthUrl } from '@/shared/api/social-bind-scan'
 import InitLoadingMask from '@/shared/components/pay/InitLoadingMask.vue'
 
 const props = withDefaults(defineProps<{
@@ -29,10 +31,22 @@ const route = useRoute()
 const loading = ref(true)
 const failed = ref(false)
 const failMsg = ref('')
-// login 场景确认页状态(等待用户确认/取消后终态)
+// 确认页状态(等待用户确认/取消后终态)
 const needConfirm = ref(false)
 const cancelling = ref(false)
 const cancelled = ref(false)
+// bind 场景: 确认页展示的脱敏目标账号名
+const maskedAccount = ref('')
+
+// 确认页主提示: bind 带账号插值(核对目标账号), login 通用文案
+const confirmTip = computed(() => {
+  if (props.mode === 'login') {
+    return t('auth.loginScan.confirmTip')
+  }
+  return maskedAccount.value
+    ? t('auth.bindScan.confirmAccountTip', { account: maskedAccount.value })
+    : t('auth.bindScan.confirmTip')
+})
 
 /**
  * 标记失败状态
@@ -46,7 +60,7 @@ function markFailed(msg: string) {
 /**
  * 凭票据换取授权地址并跳转微信
  *
- * bind 场景页面加载即调用; login 场景由确认页「确认登录」触发
+ * 由确认页「确认」按钮触发(两场景一致)
  */
 function jumpToWechat(ticket: string) {
   const fetchAuthUrl = props.mode === 'login' ? getLoginScanAuthUrl : getBindScanAuthUrl
@@ -65,7 +79,7 @@ function jumpToWechat(ticket: string) {
 }
 
 /**
- * 页面初始化: bind 直接换授权地址跳微信, login 先落确认页
+ * 页面初始化: 两场景均落确认页; bind 先拉取脱敏账号名
  *
  * 提前到 setup 顶层执行(不等 onMounted), 让 InitLoadingMask/确认页第一时间接管视觉
  */
@@ -76,16 +90,25 @@ function init() {
     return
   }
   if (props.mode === 'login') {
-    // 扫码登录: 先确认再发起授权, 取消入口见 [handleCancel]
+    // 扫码登录: 直接落确认页(无账号可展示)
     loading.value = false
     needConfirm.value = true
     return
   }
-  jumpToWechat(ticket)
+  // 扫码绑定: 先换脱敏账号名再落确认页, 票据无效时按失败卡兜底
+  getBindScanConfirmInfo(ticket)
+    .then((info) => {
+      maskedAccount.value = info?.maskedAccount || ''
+      loading.value = false
+      needConfirm.value = true
+    })
+    .catch((err: Error) => {
+      markFailed(err?.message || t('auth.bindScan.jumpFail'))
+    })
 }
 
 /**
- * 确认登录: 发起微信授权(跳转前由全屏遮罩接管视觉)
+ * 确认: 发起微信授权(跳转前由全屏遮罩接管视觉)
  */
 function handleConfirm() {
   if (needConfirm.value === false) {
@@ -97,7 +120,7 @@ function handleConfirm() {
 }
 
 /**
- * 取消登录: 标记票据 cancelled(PC 端停止轮询并提示刷新), 展示已取消终态
+ * 取消: 标记票据 cancelled(PC 端停止轮询并提示刷新), 展示已取消终态
  *
  * 请求失败也按已取消展示(票据 5 分钟自然过期, PC 端按过期兜底)
  */
@@ -106,8 +129,9 @@ async function handleCancel() {
     return
   }
   cancelling.value = true
+  const cancel = props.mode === 'login' ? cancelLoginScan : cancelBindScan
   try {
-    await cancelLoginScan(route.query.ticket as string)
+    await cancel(route.query.ticket as string)
   }
   catch {
     // 忽略: 票据自然过期兜底
@@ -123,9 +147,9 @@ init()
 
 <template>
   <div class="bind-scan-container">
-    <!-- 跳转微信中: 统一全屏遮罩 -->
+    <!-- 跳转微信/拉取确认信息中: 统一全屏遮罩 -->
     <InitLoadingMask v-if="loading" tip-key="auth.bindScan.jumping" />
-    <!-- 扫码登录确认页: 按次确认, 防诱导扫码钓鱼 -->
+    <!-- 扫码确认页: 按次确认, 防诱导扫码钓鱼(bind 展示脱敏目标账号供核对) -->
     <div v-else-if="needConfirm" class="result-box">
       <div class="status-icon">
         <svg viewBox="0 0 1024 1024" width="64" height="64" aria-hidden="true">
@@ -136,24 +160,24 @@ init()
         </svg>
       </div>
       <h3 class="result-title">
-        {{ t('auth.loginScan.confirmTitle') }}
+        {{ t(mode === 'login' ? 'auth.loginScan.confirmTitle' : 'auth.bindScan.confirmTitle') }}
       </h3>
       <p class="result-tip">
-        {{ t('auth.loginScan.confirmTip') }}
+        {{ confirmTip }}
       </p>
       <p class="security-hint">
-        {{ t('auth.loginScan.confirmSecurityTip') }}
+        {{ t(mode === 'login' ? 'auth.loginScan.confirmSecurityTip' : 'auth.bindScan.confirmSecurityTip') }}
       </p>
       <div class="action-buttons">
         <van-button type="primary" round block color="#07c160" @click="handleConfirm">
-          {{ t('auth.loginScan.confirmBtn') }}
+          {{ t(mode === 'login' ? 'auth.loginScan.confirmBtn' : 'auth.bindScan.confirmBtn') }}
         </van-button>
         <van-button round plain block :loading="cancelling" @click="handleCancel">
-          {{ t('auth.loginScan.cancelBtn') }}
+          {{ t(mode === 'login' ? 'auth.loginScan.cancelBtn' : 'auth.bindScan.cancelBtn') }}
         </van-button>
       </div>
     </div>
-    <!-- 已取消(终态): 用户在确认页拒绝了本次登录 -->
+    <!-- 已取消(终态): 用户在确认页拒绝了本次绑定/登录 -->
     <div v-else-if="cancelled" class="result-box">
       <div class="status-icon">
         <svg viewBox="0 0 1024 1024" width="64" height="64" aria-hidden="true">
@@ -162,10 +186,10 @@ init()
         </svg>
       </div>
       <h3 class="result-title">
-        {{ t('auth.loginScan.cancelledTitle') }}
+        {{ t(mode === 'login' ? 'auth.loginScan.cancelledTitle' : 'auth.bindScan.cancelledTitle') }}
       </h3>
       <p class="result-tip">
-        {{ t('auth.loginScan.cancelledTip') }}
+        {{ t(mode === 'login' ? 'auth.loginScan.cancelledTip' : 'auth.bindScan.cancelledTip') }}
       </p>
       <div class="action-buttons">
         <p class="close-hint">

@@ -29,6 +29,53 @@ export function getBindScanAuthUrl(ticket: string): Promise<string> {
   )
 }
 
+/** 扫码绑定确认信息(与后端 SocialBindScanConfirmResult 对齐) */
+export interface BindScanConfirmInfo {
+  /** 脱敏的目标账号名(手机号/邮箱/用户名按各自规则脱敏) */
+  maskedAccount?: string
+}
+
+/**
+ * 查询扫码绑定确认信息(公众号扫码绑定确认页专用)
+ *
+ * 返回脱敏的目标账号名, 供扫码者核对是否本人的电脑端账号;
+ * 票据无效时后端报错, 由确认页按失败卡兜底
+ */
+export function getBindScanConfirmInfo(ticket: string): Promise<BindScanConfirmInfo> {
+  return http.request<BindScanConfirmInfo>(
+    {
+      url: '/social/bind-scan/confirm-info',
+      method: RequestEnum.GET,
+      params: { ticket },
+    },
+    {
+      // 由扫码绑定页自行处理错误展示
+      isShowMessage: false,
+    },
+  )
+}
+
+/**
+ * 取消扫码绑定(公众号扫码绑定确认页专用)
+ *
+ * 手机端用户点击「取消」拒绝本次绑定, PC 端轮询到 cancelled 后停止轮询;
+ * 票据不存在或已不可取消时空操作
+ */
+export function cancelBindScan(ticket: string): Promise<void> {
+  return http.request<void>(
+    {
+      url: '/social/bind-scan/cancel',
+      method: RequestEnum.POST,
+      // 同 exchangeBindScan: POST 须以 JSON body 提交(后端 @RequestBody)
+      data: { ticket },
+    },
+    {
+      // 由确认页自行处理错误展示
+      isShowMessage: false,
+    },
+  )
+}
+
 /**
  * 扫码绑定授权码兑换(微信授权回调页专用)
  *
