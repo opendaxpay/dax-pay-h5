@@ -11,5 +11,9 @@
   "merchantStatement": "คำชี้แจงของผู้ขาย",
   "errorPage": "ไม่พบหน้า",
   "payResult": "ผลการชำระเงิน",
-  "transferConfirm": "ยืนยันการโอนเงิน"
+  "transferConfirm": "ยืนยันการโอนเงิน",
+  "bindScan": "การผูกบัญชี",
+  "bindScanResult": "ผลการผูกบัญชี",
+  "loginScan": "เข้าสู่ระบบด้วย QR WeChat",
+  "loginScanResult": "ผลการเข้าสู่ระบบ QR"
 }

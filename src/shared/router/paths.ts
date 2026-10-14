@@ -117,6 +117,28 @@ export const RoutePath = {
    */
   SOCIAL_BIND_TRANSIT: '/auth/social-bind-callback/:client/:source',
   /**
+   * 公众号扫码绑定发起页（跨端：PC 生成的二维码内容, 手机微信扫码打开）
+   * 公众号网页授权仅微信客户端内可完成, PC 端发起绑定改走扫码跨设备流程,
+   * 本页凭票据换授权地址后跳转微信, 与后端 SCAN_BIND_PAGE_PATH 契约一致
+   */
+  SOCIAL_BIND_SCAN: '/social/bind-scan',
+  /**
+   * 公众号扫码绑定回调页（跨端：微信授权重定向落地, 凭 code+state 完成绑定）
+   * 与后端扫码绑定回调路径契约一致({paymentGatewayBaseUrl}/social/bind-scan-callback/{source})
+   */
+  SOCIAL_BIND_SCAN_CALLBACK: '/social/bind-scan-callback/:source',
+  /**
+   * 公众号扫码登录发起页（跨端：PC 登录页二维码内容, 手机微信扫码打开）
+   * PC 登录页公众号无法直接跳转授权, 改走扫码跨设备流程,
+   * 本页凭票据换授权地址后跳转微信, 与后端 SCAN_LOGIN_PAGE_PATH 契约一致
+   */
+  SOCIAL_LOGIN_SCAN: '/social/login-scan',
+  /**
+   * 公众号扫码登录回调页（跨端：微信授权重定向落地, 凭 code+state 完成登录）
+   * 与后端扫码登录回调路径契约一致({paymentGatewayBaseUrl}/social/login-scan-callback/{source})
+   */
+  SOCIAL_LOGIN_SCAN_CALLBACK: '/social/login-scan-callback/:source',
+  /**
    * 支付结果页（跨端；通道同步回跳落地页 + jsapi 终态统一入口）
    * 通道 returnUrl 设为此地址: {paymentGatewayBaseUrl}/pay-result/{tradeNo}
    * 支付完成后凭 tradeNo 查订单状态, 有商户 returnUrl 则带签名跳转, 无则展示结果结束页

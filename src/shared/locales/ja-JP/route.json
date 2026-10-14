@@ -11,5 +11,9 @@
   "merchantStatement": "販売者の声明",
   "errorPage": "ページが見つかりません",
   "payResult": "支払結果",
-  "transferConfirm": "送金確認"
+  "transferConfirm": "送金確認",
+  "bindScan": "アカウント紐付け",
+  "bindScanResult": "紐付け結果",
+  "loginScan": "WeChat QRログイン",
+  "loginScanResult": "QRログイン結果"
 }

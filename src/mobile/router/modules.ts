@@ -244,6 +244,42 @@ const routeModuleList: Array<RouteRecordRaw> = [
       title: 'route.socialTransit', // 登录跳转
     },
   },
+  // 公众号扫码绑定发起页（跨端：PC 二维码内容，手机微信扫码打开换授权地址跳微信）
+  {
+    path: RoutePath.SOCIAL_BIND_SCAN,
+    name: 'SocialBindScan',
+    component: () => import('@/mobile/views/auth/bind-scan/index.vue'),
+    meta: {
+      title: 'route.bindScan', // 账号绑定
+    },
+  },
+  // 公众号扫码绑定回调页（跨端：微信授权重定向落地，凭 code+state 完成绑定）
+  {
+    path: RoutePath.SOCIAL_BIND_SCAN_CALLBACK,
+    name: 'SocialBindScanResult',
+    component: () => import('@/mobile/views/auth/bind-scan/result.vue'),
+    meta: {
+      title: 'route.bindScanResult', // 绑定结果
+    },
+  },
+  // 公众号扫码登录发起页（跨端：PC 登录页二维码内容，手机微信扫码打开换授权地址跳微信）
+  {
+    path: RoutePath.SOCIAL_LOGIN_SCAN,
+    name: 'SocialLoginScan',
+    component: () => import('@/mobile/views/auth/login-scan/index.vue'),
+    meta: {
+      title: 'route.loginScan', // 微信扫码登录
+    },
+  },
+  // 公众号扫码登录回调页（跨端：微信授权重定向落地，凭 code+state 完成登录）
+  {
+    path: RoutePath.SOCIAL_LOGIN_SCAN_CALLBACK,
+    name: 'SocialLoginScanResult',
+    component: () => import('@/mobile/views/auth/login-scan/result.vue'),
+    meta: {
+      title: 'route.loginScanResult', // 登录结果
+    },
+  },
   // 支付结果页（跨端：通道同步回跳落地页 + jsapi 终态统一入口）
   {
     path: RoutePath.PAY_RESULT,

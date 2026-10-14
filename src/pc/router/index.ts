@@ -131,6 +131,34 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pc/views/auth/social-transit/bind.vue'),
     meta: { title: 'route.socialTransit' }, // 登录跳转
   },
+  // 公众号扫码绑定发起页（跨端：与移动端同 path 各指各 view，PC 微信内置浏览器也可打开）
+  {
+    path: RoutePath.SOCIAL_BIND_SCAN,
+    name: 'PcSocialBindScan',
+    component: () => import('@/pc/views/auth/bind-scan/index.vue'),
+    meta: { title: 'route.bindScan' }, // 账号绑定
+  },
+  // 公众号扫码绑定回调页（跨端：微信授权重定向落地，凭 code+state 完成绑定）
+  {
+    path: RoutePath.SOCIAL_BIND_SCAN_CALLBACK,
+    name: 'PcSocialBindScanResult',
+    component: () => import('@/pc/views/auth/bind-scan/result.vue'),
+    meta: { title: 'route.bindScanResult' }, // 绑定结果
+  },
+  // 公众号扫码登录发起页（跨端：与移动端同 path 各指各 view，PC 微信内置浏览器也可打开）
+  {
+    path: RoutePath.SOCIAL_LOGIN_SCAN,
+    name: 'PcSocialLoginScan',
+    component: () => import('@/pc/views/auth/login-scan/index.vue'),
+    meta: { title: 'route.loginScan' }, // 微信扫码登录
+  },
+  // 公众号扫码登录回调页（跨端：微信授权重定向落地，凭 code+state 完成登录）
+  {
+    path: RoutePath.SOCIAL_LOGIN_SCAN_CALLBACK,
+    name: 'PcSocialLoginScanResult',
+    component: () => import('@/pc/views/auth/login-scan/result.vue'),
+    meta: { title: 'route.loginScanResult' }, // 登录结果
+  },
   // 码牌支付：PC 仅展示扫码引导（静态段须在 /h/:code 之前）
   {
     path: RoutePath.CODE_PAY_WECHAT,

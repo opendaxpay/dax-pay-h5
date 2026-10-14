@@ -11,5 +11,9 @@
   "merchantStatement": "Merchant Statement",
   "errorPage": "Page Not Found",
   "payResult": "Payment Result",
-  "transferConfirm": "Transfer Confirm"
+  "transferConfirm": "Transfer Confirm",
+  "bindScan": "Account Binding",
+  "bindScanResult": "Binding Result",
+  "loginScan": "WeChat QR Login",
+  "loginScanResult": "QR Login Result"
 }

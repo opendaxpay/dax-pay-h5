@@ -11,5 +11,9 @@
   "merchantStatement": "Penyata Peniaga",
   "errorPage": "Halaman tidak dijumpai",
   "payResult": "Hasil Pembayaran",
-  "transferConfirm": "Pengesahan Pemindahan"
+  "transferConfirm": "Pengesahan Pemindahan",
+  "bindScan": "Pengikatan Akaun",
+  "bindScanResult": "Keputusan Pengikatan",
+  "loginScan": "Log Masuk QR WeChat",
+  "loginScanResult": "Keputusan Log Masuk QR"
 }

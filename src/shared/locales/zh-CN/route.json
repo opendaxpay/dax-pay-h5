@@ -11,5 +11,9 @@
   "merchantStatement": "商户对账单",
   "errorPage": "页面不存在",
   "payResult": "支付结果",
-  "transferConfirm": "转账确认收款"
+  "transferConfirm": "转账确认收款",
+  "bindScan": "账号绑定",
+  "bindScanResult": "绑定结果",
+  "loginScan": "微信扫码登录",
+  "loginScanResult": "扫码登录结果"
 }

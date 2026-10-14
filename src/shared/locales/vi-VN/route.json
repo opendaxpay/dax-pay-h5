@@ -11,5 +11,9 @@
   "merchantStatement": "Tuyên bố của người bán",
   "errorPage": "Không tìm thấy trang",
   "payResult": "Kết quả thanh toán",
-  "transferConfirm": "Xác nhận chuyển khoản"
+  "transferConfirm": "Xác nhận chuyển khoản",
+  "bindScan": "Liên kết tài khoản",
+  "bindScanResult": "Kết quả liên kết",
+  "loginScan": "Đăng nhập QR WeChat",
+  "loginScanResult": "Kết quả đăng nhập QR"
 }

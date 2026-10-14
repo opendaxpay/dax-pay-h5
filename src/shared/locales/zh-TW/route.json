@@ -11,5 +11,9 @@
   "merchantStatement": "商戶對賬單",
   "errorPage": "頁面不存在",
   "payResult": "支付結果",
-  "transferConfirm": "轉帳確認收款"
+  "transferConfirm": "轉帳確認收款",
+  "bindScan": "賬號繫結",
+  "bindScanResult": "繫結結果",
+  "loginScan": "微信掃碼登入",
+  "loginScanResult": "掃碼登入結果"
 }
