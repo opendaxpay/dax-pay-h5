@@ -9,6 +9,8 @@ export function authAndGet(param: AuthCodeParam): Promise<AuthResult> {
     url: '/unipay/gateway/auth/callback',
     method: RequestEnum.POST,
     data: param,
+    // 服务端要用授权码调微信/支付宝接口换取标识, 第三方偶发慢时 10s 全局超时不够用
+    timeout: 30 * 1000,
   }, {
     // 由页面自行处理错误展示
     isShowMessage: false,

@@ -177,7 +177,9 @@ const transform: AxiosTransform = {
     try {
       if (code === 'ECONNABORTED' && message.includes('timeout')) {
         showFailToast(t('http.timeout'))
-        return
+        // 超时必须以 reject 透出: 直接 return 会把调用方的 .then 解析为 undefined,
+        // 页面会误判为「成功但无数据」(如认证调试页显示兜底的「获取用户标识失败」)
+        return Promise.reject(new Error(t('http.timeout')))
       }
       if (err && err.includes('Network Error')) {
         showDialog({
