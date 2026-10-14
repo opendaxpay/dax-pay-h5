@@ -140,6 +140,27 @@ export function exchangeLoginScan(code: string, state: string): Promise<BindScan
 }
 
 /**
+ * 标记扫码登录已扫码(公众号扫码登录发起页专用)
+ *
+ * 手机端打开发起页即视为已扫码, PC 端轮询到 scanned 后展示「扫码成功待操作」中间态;
+ * 票据不存在或已进入终态时空操作(终态不回退)
+ */
+export function markLoginScanScanned(ticket: string): Promise<void> {
+  return http.request<void>(
+    {
+      url: '/social/login-scan/scanned',
+      method: RequestEnum.POST,
+      // 同 exchangeLoginScan: POST 须以 JSON body 提交(后端 @RequestBody)
+      data: { ticket },
+    },
+    {
+      // 上报失败静默(仅影响 PC 端中间态展示, 不阻塞确认页)
+      isShowMessage: false,
+    },
+  )
+}
+
+/**
  * 取消扫码登录(公众号扫码登录确认页专用)
  *
  * 手机端用户点击「取消」拒绝本次电脑端登录, PC 端轮询到 cancelled 后停止轮询;

@@ -15,7 +15,7 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { cancelBindScan, cancelLoginScan, getBindScanAuthUrl, getBindScanConfirmInfo, getLoginScanAuthUrl } from '@/shared/api/social-bind-scan'
+import { cancelBindScan, cancelLoginScan, getBindScanAuthUrl, getBindScanConfirmInfo, getLoginScanAuthUrl, markLoginScanScanned } from '@/shared/api/social-bind-scan'
 import InitLoadingMask from '@/shared/components/pay/InitLoadingMask.vue'
 
 const props = withDefaults(defineProps<{
@@ -90,7 +90,11 @@ function init() {
     return
   }
   if (props.mode === 'login') {
-    // 扫码登录: 直接落确认页(无账号可展示)
+    // 扫码登录: 上报已扫码(PC 端轮询展示「扫码成功待操作」中间态, 失败静默不影响流程),
+    // 直接落确认页(无账号可展示; bind 场景由 confirm-info 接口在后端顺带标记)
+    markLoginScanScanned(ticket).catch(() => {
+      // 忽略: 上报失败仅少了 PC 端中间态反馈, 票据 5 分钟自然过期兜底
+    })
     loading.value = false
     needConfirm.value = true
     return
