@@ -79,21 +79,19 @@ const transform: AxiosTransform = {
           // on close
         })
       }
+      else if (!hasSuccess && code === ResultEnum.ERROR) {
+        // 业务失败兜底提示(须在 isShowMessage 块内: 设为 false 的调用方约定由页面自行处理,
+        // 不在此弹, 否则与页面终态展示叠双重提示)
+        showFailToast(message)
+      }
     }
 
     // 接口请求成功，直接返回结果
     if (code === ResultEnum.SUCCESS) {
       return resultData
     }
-    // 接口请求错误，统一提示错误信息 这里逻辑可以根据项目进行修改
-    const errorMsg = message
-    switch (code) {
-      // 请求失败
-      case ResultEnum.ERROR:
-        showFailToast(errorMsg)
-        break
-    }
-    throw new Error(errorMsg)
+    // 接口请求错误，统一抛出，由调用方 catch 处理
+    throw new Error(message)
   },
 
   // 请求之前处理config

@@ -70,12 +70,13 @@ function markSuccess(identifier: string) {
 
 /**
  * 标记失败状态
+ *
+ * 失败卡本身是完整终态 UI(图标+原因+引导文案), 不再叠 Toast, 避免同文案双重展示
  */
 function markFailed(msg: string) {
   failed.value = true
   failMsg.value = msg
   loading.value = false
-  showFailToast(msg)
 }
 
 /**
