@@ -53,6 +53,8 @@ export interface CashierItemPublic {
   needOpenId?: boolean
   // 是否为订单已锁定的支付项（订单支付中且与已锁定的支付方式匹配）
   locked?: boolean
+  /** 支付项可用性预检（后端路由探测不可达时为 false, 应隐藏; 旧后端无此字段视为可用） */
+  available?: boolean
 }
 
 /** 查询网关订单 */
@@ -146,11 +148,13 @@ export function listCashierItems(params: {
   }, {
     isShowMessage: false,
   }).then((list) => {
-    // id 统一为 string
-    return (list || []).map(item => ({
-      ...item,
-      id: String(item.id),
-    }))
+    // 过滤后端路由预检不可用的项(仅显式 false 过滤, 旧后端无该字段视为可用), id 统一为 string
+    return (list || [])
+      .filter(item => item.available !== false)
+      .map(item => ({
+        ...item,
+        id: String(item.id),
+      }))
   })
 }
 
