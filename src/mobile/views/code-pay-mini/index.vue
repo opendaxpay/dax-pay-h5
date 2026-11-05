@@ -1,24 +1,38 @@
 <script lang="ts" setup>
 /**
  * 码牌小程序引导页（/m/:code）
- * 系统浏览器打开:展示"请扫码支付";钱包 App 内打开(小程序未拉起):展示"小程序暂不可用"。
- * UA 分流由 useMiniGuideEnv 处理。微信/支付宝扫码正常时由「普通链接二维码」规则拉起小程序。
- * 视觉结构与 aggregate-mini/index.vue 对齐（品牌条 + 上浮卡）。
+ * 落到本页说明「普通链接二维码」认领规则未拦截（未配置/未发布/非钱包环境），
+ * 直接重定向 H5 码牌支付页（RoutePath.CODE_PAY，自带 UA 探测分端）继续完成支付，不再驻留提示；
+ * 认领规则生效时本页不会被打开（钱包直接拉起小程序）。
+ * 视觉结构保留作重定向期间的兜底壳（与 aggregate-mini/index.vue 对齐：品牌条 + 上浮卡）。
  */
+import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { closeWebview } from '@/shared/pay/close-webview'
 import { useMiniGuideEnv } from '@/shared/pay/use-mini-guide-env'
 
 defineOptions({ name: 'CodePayMiniGuidePage' })
 
+// 码牌支付入口路由 name（RoutePath.CODE_PAY = /h/:code 的入口分发页，注册见 mobile/router/modules.ts）
+const CODE_PAY_ENTRY_ROUTE_NAME = 'CodePayEntry'
+
 const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 // 码牌编码来自路由参数
 const code = (route.params.code as string) || ''
 
 // UA 感知:钱包内显示"小程序暂不可用"+当前钱包图标;否则"请扫码支付"+四钱包
 const { icons, titleKey, descKey } = useMiniGuideEnv()
+
+// 兜底跳转 H5 码牌支付页（认领未生效/非钱包环境均适用）
+// 只在本页(/m/:code)跳向码牌支付路由，码牌支付页不再回跳，不会形成重定向循环；code 为空时保留提示壳
+onMounted(() => {
+  if (code) {
+    router.replace({ name: CODE_PAY_ENTRY_ROUTE_NAME, params: { code } })
+  }
+})
 </script>
 
 <template>
