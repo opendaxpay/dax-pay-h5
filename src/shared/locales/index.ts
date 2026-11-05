@@ -46,8 +46,9 @@ const i18n = createI18n({
     'th-TH': thTH,
     'ms-MY': msMY,
   },
-  missingWarn: false,
-  fallbackWarn: false,
+  // dev 提示缺 key / 回退（便于发现漏翻与层级错位），生产保持静默避免控制台噪音
+  missingWarn: !!import.meta.env.DEV,
+  fallbackWarn: !!import.meta.env.DEV,
 })
 
 /** vant 语言包响应式引用，供 `van-config-provider` 的 `:locale` 绑定 */

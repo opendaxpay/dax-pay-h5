@@ -19,16 +19,16 @@ interface Trade {
   status: StatusCode
 }
 
-// 演示交易流水（mock）
+// 演示交易流水（mock）：仅用于演示，订单标题用中性英文占位，不参与 i18n 词条体系
 const trades: Trade[] = [
-  { time: '2026-06-24 10:23:11', orderNo: 'DEMO20260624102311001', title: '会员订阅', amount: 99.00, channel: 'wechat', status: 'success' },
-  { time: '2026-06-24 09:48:32', orderNo: 'DEMO20260624094832002', title: '商品订单', amount: 158.50, channel: 'alipay', status: 'success' },
-  { time: '2026-06-24 09:12:05', orderNo: 'DEMO20260624091205003', title: '虚拟商品', amount: 12.00, channel: 'wechat', status: 'pending' },
-  { time: '2026-06-23 22:01:47', orderNo: 'DEMO20260623220147004', title: '服务费', amount: 300.00, channel: 'union', status: 'success' },
-  { time: '2026-06-23 18:34:20', orderNo: 'DEMO20260623183420005', title: '商品订单', amount: 46.80, channel: 'alipay', status: 'fail' },
-  { time: '2026-06-23 15:09:56', orderNo: 'DEMO20260623150956006', title: '会员订阅', amount: 99.00, channel: 'wechat', status: 'success' },
-  { time: '2026-06-23 11:42:13', orderNo: 'DEMO20260623114213007', title: '虚拟商品', amount: 6.00, channel: 'wechat', status: 'success' },
-  { time: '2026-06-23 08:55:30', orderNo: 'DEMO20260623085530008', title: '商品订单', amount: 218.00, channel: 'alipay', status: 'success' },
+  { time: '2026-06-24 10:23:11', orderNo: 'DEMO20260624102311001', title: 'Membership Subscription', amount: 99.00, channel: 'wechat', status: 'success' },
+  { time: '2026-06-24 09:48:32', orderNo: 'DEMO20260624094832002', title: 'Product Order', amount: 158.50, channel: 'alipay', status: 'success' },
+  { time: '2026-06-24 09:12:05', orderNo: 'DEMO20260624091205003', title: 'Virtual Goods', amount: 12.00, channel: 'wechat', status: 'pending' },
+  { time: '2026-06-23 22:01:47', orderNo: 'DEMO20260623220147004', title: 'Service Fee', amount: 300.00, channel: 'union', status: 'success' },
+  { time: '2026-06-23 18:34:20', orderNo: 'DEMO20260623183420005', title: 'Product Order', amount: 46.80, channel: 'alipay', status: 'fail' },
+  { time: '2026-06-23 15:09:56', orderNo: 'DEMO20260623150956006', title: 'Membership Subscription', amount: 99.00, channel: 'wechat', status: 'success' },
+  { time: '2026-06-23 11:42:13', orderNo: 'DEMO20260623114213007', title: 'Virtual Goods', amount: 6.00, channel: 'wechat', status: 'success' },
+  { time: '2026-06-23 08:55:30', orderNo: 'DEMO20260623085530008', title: 'Product Order', amount: 218.00, channel: 'alipay', status: 'success' },
 ]
 
 // 汇总
