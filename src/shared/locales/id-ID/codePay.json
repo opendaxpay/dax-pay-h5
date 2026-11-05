@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "Merchant Demo",
   "amountLabel": "Jumlah",
   "remark": "Catatan",
   "addRemark": "Tambah catatan",
@@ -7,7 +6,6 @@
   "amountZero": "Jumlah tidak boleh 0",
   "amountOverMax": "Jumlah tidak boleh melebihi ¥99.999.999,99",
   "confirmPay": "Konfirmasi Pembayaran",
-  "demoPay": "Demo: kode {code} bayar ¥{amount}",
   "loadFail": "Gagal memuat info kode QR, coba lagi nanti",
   "loadFailTitle": "Gagal memuat",
   "merchantDefault": "Merchant",
@@ -15,7 +13,6 @@
   "paySuccess": "Pembayaran berhasil",
   "paidTip": "Pembayaran selesai. Terima kasih",
   "payFail": "Pembayaran gagal, coba lagi",
-  "payLaunched": "Pembayaran diluncurkan",
   "payPending": "Pesanan dibuat, selesaikan pembayaran",
   "paying": "Membayar…",
   "processing": "Memproses…",
@@ -24,8 +21,6 @@
   "codeLabel": "Kode",
   "miniAppOnly": "Ini kode mini-program. Bayar di mini-program.",
   "redirecting": "Mengalihkan…",
-  "unsupportedClient": "Pindai dengan WeChat atau Alipay",
-  "unsupportedClientHint": "Silakan buka tautan ini dengan pindai WeChat, Alipay, atau dompet lain.",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

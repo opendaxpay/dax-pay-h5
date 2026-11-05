@@ -29,7 +29,6 @@
   "expired": "Pesanan tamat tempoh",
   "jsapiPending": "Kebenaran diperlukan untuk bayar dalam app ini. Akan datang.",
   "payLaunched": "Pembayaran dimulakan. Sila selesai dalam dompet anda.",
-  "envRedirecting": "Membuka kaunter bayaran...",
   "authUrlFail": "Failed to get authorization URL",
   "payCancel": "Payment cancelled",
   "closed": "Pesanan ditutup",

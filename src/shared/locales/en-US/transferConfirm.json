@@ -7,7 +7,6 @@
   "confirmedDesc": "Funds are being processed, please check your WeChat wallet later",
   "confirm": "Confirm Receipt",
   "processing": "Processing...",
-  "success": "Receipt Successful",
   "cancelled": "Cancelled",
   "failed": "Receipt failed, please try again later",
   "loadFailed": "Failed to load transfer info",

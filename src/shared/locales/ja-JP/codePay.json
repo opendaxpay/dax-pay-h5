@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "デモ加盟店",
   "amountLabel": "お支払い金額",
   "remark": "備考",
   "addRemark": "備考を追加",
@@ -7,7 +6,6 @@
   "amountZero": "金額は0にできません",
   "amountOverMax": "金額は 99999999.99 元を超えられません",
   "confirmPay": "支払いを確認",
-  "demoPay": "デモ：コード {code} 支払い ¥{amount}",
   "loadFail": "コード情報の読み込みに失敗しました。しばらくしてから再試行してください",
   "loadFailTitle": "読み込み失敗",
   "merchantDefault": "加盟店",
@@ -15,7 +13,6 @@
   "paySuccess": "支払い成功",
   "paidTip": "支払いが完了しました。ありがとうございます",
   "payFail": "支払いに失敗しました。再試行してください",
-  "payLaunched": "支払いを開始しました",
   "payPending": "注文が作成されました。支払いを完了してください",
   "paying": "支払い中…",
   "processing": "処理中…",
@@ -24,8 +21,6 @@
   "codeLabel": "コード番号",
   "miniAppOnly": "これはミニプログラム用コードです。ミニプログラムでお支払いください。",
   "redirecting": "リダイレクト中…",
-  "unsupportedClient": "WeChat または Alipay でスキャンしてください",
-  "unsupportedClientHint": "WeChat・Alipay などのウォレットでスキャンして本リンクを開いてください。",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

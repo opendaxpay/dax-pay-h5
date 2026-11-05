@@ -29,7 +29,6 @@
   "expired": "訂單已過期",
   "jsapiPending": "目前環境需完成授權後調起支付，功能即將上線",
   "payLaunched": "支付已發起，請在錢包內完成支付",
-  "envRedirecting": "正在進入收銀台...",
   "authUrlFail": "取得授權連結失敗",
   "payCancel": "已取消支付",
   "closed": "訂單已關閉",

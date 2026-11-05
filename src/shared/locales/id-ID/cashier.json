@@ -29,7 +29,6 @@
   "expired": "Pesanan kedaluwarsa",
   "jsapiPending": "Otorisasi diperlukan untuk menyelesaikan pembayaran di aplikasi ini. Segera hadir.",
   "payLaunched": "Pembayaran dimulai. Selesaikan di aplikasi dompet Anda.",
-  "envRedirecting": "Membuka kasir...",
   "authUrlFail": "Gagal mendapatkan URL otorisasi",
   "payCancel": "Pembayaran dibatalkan",
   "closed": "Pesanan ditutup",

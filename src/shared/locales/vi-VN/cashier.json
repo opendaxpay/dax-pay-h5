@@ -29,7 +29,6 @@
   "expired": "Đơn hàng đã hết hạn",
   "jsapiPending": "Cần ủy quyền để thanh toán trong ứng dụng này. Sắp ra mắt.",
   "payLaunched": "Đã khởi tạo thanh toán. Vui lòng hoàn tất trong ví.",
-  "envRedirecting": "Đang mở trang thanh toán...",
   "authUrlFail": "Failed to get authorization URL",
   "payCancel": "Payment cancelled",
   "closed": "Đơn hàng đã đóng",

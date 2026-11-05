@@ -2,7 +2,6 @@
   "defaultTitle": "Bayaran Pesanan",
   "orderNo": "Order No",
   "countdown": "Time left",
-  "clientEnvLabel": "Scene",
   "clientEnv": {
     "wechat": "WeChat",
     "alipay": "Alipay",
@@ -31,8 +30,6 @@
   "useMobileScan": "Please scan with your phone to pay",
   "scanWithWallet": "Imbas dengan WeChat, Alipay, UnionPay atau Douyin untuk bayar",
   "remainingTime": "Masa berbaki",
-  "expandDetail": "Tunjuk butiran pesanan",
-  "collapseDetail": "Sembunyi butiran pesanan",
   "amount": "Jumlah",
   "orderTitle": "Tajuk",
   "description": "Penerangan",

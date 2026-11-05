@@ -1,5 +1,4 @@
 {
-  "title": "Payment Result",
   "processing": "Confirming payment result...",
   "paid": "Payment Successful",
   "failed": "Payment Failed",

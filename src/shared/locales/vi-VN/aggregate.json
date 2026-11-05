@@ -2,7 +2,6 @@
   "defaultTitle": "Thanh toán đơn hàng",
   "orderNo": "Order No",
   "countdown": "Time left",
-  "clientEnvLabel": "Scene",
   "clientEnv": {
     "wechat": "WeChat",
     "alipay": "Alipay",
@@ -31,8 +30,6 @@
   "useMobileScan": "Please scan with your phone to pay",
   "scanWithWallet": "Quét bằng WeChat, Alipay, UnionPay hoặc Douyin để thanh toán",
   "remainingTime": "Thời gian còn lại",
-  "expandDetail": "Hiện chi tiết đơn",
-  "collapseDetail": "Ẩn chi tiết đơn",
   "amount": "Số tiền",
   "orderTitle": "Tiêu đề",
   "description": "Mô tả",

@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "演示收款商户",
   "amountLabel": "付款金额",
   "remark": "备注",
   "addRemark": "添加备注",
@@ -7,7 +6,6 @@
   "amountZero": "金额不可为0",
   "amountOverMax": "金额不能超过 99999999.99 元",
   "confirmPay": "确认支付",
-  "demoPay": "演示：码牌 {code} 支付 ¥{amount}",
   "loadFail": "码牌信息加载失败, 请稍后重试",
   "loadFailTitle": "加载失败",
   "merchantDefault": "收款商户",
@@ -15,7 +13,6 @@
   "paySuccess": "支付成功",
   "paidTip": "支付已完成，感谢使用",
   "payFail": "支付失败, 请重试",
-  "payLaunched": "支付已拉起",
   "payPending": "订单已创建, 请完成支付",
   "paying": "支付中…",
   "processing": "处理中…",
@@ -24,8 +21,6 @@
   "codeLabel": "码牌编号",
   "miniAppOnly": "该码牌为小程序码，请使用小程序扫码支付",
   "redirecting": "正在跳转…",
-  "unsupportedClient": "请使用微信或支付宝扫码",
-  "unsupportedClientHint": "请使用微信、支付宝等钱包扫一扫打开本链接。",
   "wallet": {
     "wechat": "微信",
     "alipay": "支付宝",

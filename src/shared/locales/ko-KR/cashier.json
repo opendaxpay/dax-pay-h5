@@ -29,7 +29,6 @@
   "expired": "주문이 만료되었습니다",
   "jsapiPending": "이 환경에서는 인증 후 결제를 호출합니다. 곧 지원됩니다",
   "payLaunched": "결제가 시작되었습니다. 지갑 앱에서 완료하세요",
-  "envRedirecting": "결제 화면으로 이동 중...",
   "authUrlFail": "인증 URL을 가져오지 못했습니다",
   "payCancel": "결제가 취소되었습니다",
   "closed": "주문 종료",

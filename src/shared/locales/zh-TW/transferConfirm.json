@@ -7,7 +7,6 @@
   "confirmedDesc": "資金正在處理中，請稍後在微信錢包查看",
   "confirm": "確認收款",
   "processing": "處理中...",
-  "success": "收款成功",
   "cancelled": "已取消收款",
   "failed": "收款失敗，請稍後重試",
   "loadFailed": "獲取轉帳資訊失敗",

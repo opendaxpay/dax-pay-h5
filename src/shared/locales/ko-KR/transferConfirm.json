@@ -7,7 +7,6 @@
   "confirmedDesc": "자금 처리 중입니다. 나중에 WeChat 지갑에서 확인하세요",
   "confirm": "수령 확인",
   "processing": "처리 중...",
-  "success": "수령 성공",
   "cancelled": "취소됨",
   "failed": "수령 실패, 나중에 다시 시도해 주세요",
   "loadFailed": "송금 정보를 불러오지 못했습니다",

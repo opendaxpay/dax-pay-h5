@@ -2,7 +2,6 @@
   "defaultTitle": "訂單支付",
   "orderNo": "訂單號",
   "countdown": "剩餘時間",
-  "clientEnvLabel": "支付環境",
   "clientEnv": {
     "wechat": "微信",
     "alipay": "支付寶",
@@ -31,8 +30,6 @@
   "useMobileScan": "請使用手機掃碼支付",
   "scanWithWallet": "請使用微信、支付寶、雲閃付或抖音掃一掃完成支付",
   "remainingTime": "剩餘支付時間",
-  "expandDetail": "展開訂單詳情",
-  "collapseDetail": "收起訂單詳情",
   "amount": "支付金額",
   "orderTitle": "商品標題",
   "description": "商品描述",

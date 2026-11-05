@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "Merchant Demo",
   "amountLabel": "Số tiền",
   "remark": "Ghi chú",
   "addRemark": "Thêm ghi chú",
@@ -7,7 +6,6 @@
   "amountZero": "Số tiền không được là 0",
   "amountOverMax": "Số tiền không được vượt quá ¥99.999.999,99",
   "confirmPay": "Xác nhận thanh toán",
-  "demoPay": "Demo: mã {code} thanh toán ¥{amount}",
   "loadFail": "Tải thông tin mã QR thất bại, vui lòng thử lại",
   "loadFailTitle": "Tải thất bại",
   "merchantDefault": "Merchant",
@@ -15,7 +13,6 @@
   "paySuccess": "Thanh toán thành công",
   "paidTip": "Thanh toán hoàn tất. Cảm ơn bạn",
   "payFail": "Thanh toán thất bại, vui lòng thử lại",
-  "payLaunched": "Đã mở thanh toán",
   "payPending": "Đơn đã tạo, vui lòng hoàn tất thanh toán",
   "paying": "Đang thanh toán…",
   "processing": "Đang xử lý…",
@@ -24,8 +21,6 @@
   "codeLabel": "Mã bảng",
   "miniAppOnly": "Đây là mã mini-program. Vui lòng thanh toán trong mini-program.",
   "redirecting": "Đang chuyển hướng…",
-  "unsupportedClient": "Vui lòng quét bằng WeChat hoặc Alipay",
-  "unsupportedClientHint": "Vui lòng mở liên kết này bằng cách quét WeChat, Alipay hoặc ví khác.",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

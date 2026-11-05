@@ -2,7 +2,6 @@
   "defaultTitle": "注文のお支払い",
   "orderNo": "注文番号",
   "countdown": "残り時間",
-  "clientEnvLabel": "決済環境",
   "clientEnv": {
     "wechat": "WeChat",
     "alipay": "Alipay",
@@ -31,8 +30,6 @@
   "useMobileScan": "スマートフォンでスキャンして支払ってください",
   "scanWithWallet": "WeChat、Alipay、銀聯またはDouyinでスキャンして支払ってください",
   "remainingTime": "支払い残り時間",
-  "expandDetail": "注文詳細を表示",
-  "collapseDetail": "注文詳細を隠す",
   "amount": "支払金額",
   "orderTitle": "商品タイトル",
   "description": "商品説明",

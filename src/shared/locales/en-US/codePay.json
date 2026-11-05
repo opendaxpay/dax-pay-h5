@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "Demo Merchant",
   "amountLabel": "Amount",
   "remark": "Remark",
   "addRemark": "Add remark",
@@ -7,7 +6,6 @@
   "amountZero": "Amount cannot be 0",
   "amountOverMax": "Amount cannot exceed ¥99,999,999.99",
   "confirmPay": "Confirm Payment",
-  "demoPay": "Demo: code {code} payment ¥{amount}",
   "loadFail": "Failed to load QR code info, please try again later",
   "loadFailTitle": "Load failed",
   "merchantDefault": "Merchant",
@@ -15,7 +13,6 @@
   "paySuccess": "Payment successful",
   "paidTip": "Payment completed. Thank you",
   "payFail": "Payment failed, please retry",
-  "payLaunched": "Payment launched",
   "payPending": "Order created, please complete payment",
   "paying": "Paying…",
   "processing": "Processing…",
@@ -24,8 +21,6 @@
   "codeLabel": "Code",
   "miniAppOnly": "This is a mini-program QR code. Please pay in the mini program.",
   "redirecting": "Redirecting…",
-  "unsupportedClient": "Please scan with WeChat or Alipay",
-  "unsupportedClientHint": "Please open this link with WeChat, Alipay, or another wallet scan.",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

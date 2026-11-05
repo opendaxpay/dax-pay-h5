@@ -7,7 +7,6 @@
   "confirmedDesc": "資金処理中です。後ほどWeChatウォレットでご確認ください",
   "confirm": "受領確認",
   "processing": "処理中...",
-  "success": "受領成功",
   "cancelled": "キャンセルされました",
   "failed": "受領失敗、後でもう一度お試しください",
   "loadFailed": "送金情報の取得に失敗しました",

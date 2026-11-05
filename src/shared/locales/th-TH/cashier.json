@@ -29,7 +29,6 @@
   "expired": "คำสั่งซื้อหมดอายุ",
   "jsapiPending": "ต้องอนุญาตก่อนชำระในแอปนี้ เร็วๆ นี้",
   "payLaunched": "เริ่มชำระเงินแล้ว กรุณาทำรายการในกระเป๋าเงิน",
-  "envRedirecting": "กำลังเปิดหน้าชำระเงิน...",
   "authUrlFail": "Failed to get authorization URL",
   "payCancel": "Payment cancelled",
   "closed": "ปิดคำสั่งซื้อแล้ว",

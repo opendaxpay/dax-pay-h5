@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "ร้านค้าสาธิต",
   "amountLabel": "จำนวนเงิน",
   "remark": "หมายเหตุ",
   "addRemark": "เพิ่มหมายเหตุ",
@@ -7,7 +6,6 @@
   "amountZero": "จำนวนเงินต้องไม่เป็น 0",
   "amountOverMax": "จำนวนเงินต้องไม่เกิน ¥99,999,999.99",
   "confirmPay": "ยืนยันการชำระเงิน",
-  "demoPay": "สาธิต: รหัส {code} ชำระ ¥{amount}",
   "loadFail": "โหลดข้อมูลรหัส QR ไม่สำเร็จ โปรดลองอีกครั้ง",
   "loadFailTitle": "โหลดไม่สำเร็จ",
   "merchantDefault": "ร้านค้า",
@@ -15,7 +13,6 @@
   "paySuccess": "ชำระเงินสำเร็จ",
   "paidTip": "ชำระเงินสำเร็จ ขอบคุณที่ใช้บริการ",
   "payFail": "ชำระเงินไม่สำเร็จ โปรดลองอีกครั้ง",
-  "payLaunched": "เปิดการชำระเงินแล้ว",
   "payPending": "สร้างคำสั่งซื้อแล้ว โปรดชำระเงินให้เสร็จ",
   "paying": "กำลังชำระ…",
   "processing": "กำลังประมวลผล…",
@@ -24,8 +21,6 @@
   "codeLabel": "รหัส",
   "miniAppOnly": "นี่คือรหัสมินิโปรแกรม โปรดชำระในมินิโปรแกรม",
   "redirecting": "กำลังเปลี่ยนหน้า…",
-  "unsupportedClient": "โปรดสแกนด้วย WeChat หรือ Alipay",
-  "unsupportedClientHint": "โปรดเปิดลิงก์นี้ด้วยการสแกน WeChat, Alipay หรือกระเป๋าอื่น",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

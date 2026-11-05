@@ -2,7 +2,6 @@
   "defaultTitle": "ชำระคำสั่งซื้อ",
   "orderNo": "Order No",
   "countdown": "Time left",
-  "clientEnvLabel": "Scene",
   "clientEnv": {
     "wechat": "WeChat",
     "alipay": "Alipay",
@@ -31,8 +30,6 @@
   "useMobileScan": "Please scan with your phone to pay",
   "scanWithWallet": "สแกนด้วย WeChat, Alipay, UnionPay หรือ Douyin เพื่อชำระเงิน",
   "remainingTime": "เวลาที่เหลือ",
-  "expandDetail": "แสดงรายละเอียดคำสั่งซื้อ",
-  "collapseDetail": "ซ่อนรายละเอียดคำสั่งซื้อ",
   "amount": "จำนวนเงิน",
   "orderTitle": "ชื่อสินค้า",
   "description": "รายละเอียด",

@@ -1,5 +1,4 @@
 {
-  "demoMerchant": "데모 가맹점",
   "amountLabel": "결제 금액",
   "remark": "비고",
   "addRemark": "비고 추가",
@@ -7,7 +6,6 @@
   "amountZero": "금액은 0일 수 없습니다",
   "amountOverMax": "금액은 99999999.99 원을 초과할 수 없습니다",
   "confirmPay": "결제 확인",
-  "demoPay": "데모: 코드 {code} 결제 ¥{amount}",
   "loadFail": "코드 정보를 불러오지 못했습니다. 잠시 후 다시 시도하세요",
   "loadFailTitle": "불러오기 실패",
   "merchantDefault": "가맹점",
@@ -15,7 +13,6 @@
   "paySuccess": "결제 성공",
   "paidTip": "결제가 완료되었습니다. 감사합니다",
   "payFail": "결제 실패, 다시 시도하세요",
-  "payLaunched": "결제가 시작되었습니다",
   "payPending": "주문이 생성되었습니다. 결제를 완료하세요",
   "paying": "결제 중…",
   "processing": "처리 중…",
@@ -24,8 +21,6 @@
   "codeLabel": "코드 번호",
   "miniAppOnly": "미니프로그램 코드입니다. 미니프로그램에서 결제하세요.",
   "redirecting": "이동 중…",
-  "unsupportedClient": "WeChat 또는 Alipay로 스캔하세요",
-  "unsupportedClientHint": "WeChat, Alipay 등 지갑으로 스캔하여 이 링크를 열어 주세요.",
   "wallet": {
     "wechat": "WeChat",
     "alipay": "Alipay",

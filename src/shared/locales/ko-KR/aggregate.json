@@ -2,7 +2,6 @@
   "defaultTitle": "주문 결제",
   "orderNo": "주문번호",
   "countdown": "남은 시간",
-  "clientEnvLabel": "결제 환경",
   "clientEnv": {
     "wechat": "위챗",
     "alipay": "알리페이",
@@ -31,8 +30,6 @@
   "useMobileScan": "휴대폰으로 스캔하여 결제하세요",
   "scanWithWallet": "위챗, 알리페이, 유니온페이 또는 도우인으로 스캔하여 결제하세요",
   "remainingTime": "남은 결제 시간",
-  "expandDetail": "주문 상세 보기",
-  "collapseDetail": "주문 상세 숨기기",
   "amount": "결제 금액",
   "orderTitle": "상품 제목",
   "description": "상품 설명",

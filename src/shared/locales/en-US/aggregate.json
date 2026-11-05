@@ -2,7 +2,6 @@
   "defaultTitle": "Pay Order",
   "orderNo": "Order No",
   "countdown": "Time left",
-  "clientEnvLabel": "Scene",
   "clientEnv": {
     "wechat": "WeChat",
     "alipay": "Alipay",
@@ -31,8 +30,6 @@
   "useMobileScan": "Please scan with your phone to pay",
   "scanWithWallet": "Scan with WeChat, Alipay, UnionPay or Douyin to pay",
   "remainingTime": "Time remaining",
-  "expandDetail": "Show order details",
-  "collapseDetail": "Hide order details",
   "amount": "Amount",
   "orderTitle": "Title",
   "description": "Description",

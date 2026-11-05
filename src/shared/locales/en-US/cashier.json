@@ -29,7 +29,6 @@
   "expired": "Order expired",
   "jsapiPending": "Authorization is required to complete payment in this app. Coming soon.",
   "payLaunched": "Payment started. Please finish in your wallet app.",
-  "envRedirecting": "Opening checkout...",
   "authUrlFail": "Failed to get authorization URL",
   "payCancel": "Payment cancelled",
   "closed": "Order closed",
